@@ -1,6 +1,10 @@
+<?php
+    include 'dbconfig.php';
+?>
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Book Hub</title>
+    <title><?php echo TITLE; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="files/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -16,44 +20,49 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 center" style="padding: 0 0 25px 0">
 
-            <form  style="margin: 25px 0 0 0" method="get" action="search.php">
+            <form  style="margin: 25px 0 0 0" method="GET" action="search.php">
                 <div style="width: 100%; float:right">
                     <input name="key" type="text" style="height: 30px; width: 50%" tabindex="1" value="" />
-                    <input type="hidden" name="cd" />&nbsp;
                     <input class="ui-button" type="submit" name="search" value="Search">
                 </div>
             </form>
 
         </div>
         <div class="clear"></div>
+
+
+
+
         <div style="margin: 0 20px 0 20px; border-radius: 10px">
             <div id='cssmenu'>
                 <ul>
-                    <li><a href="search.php?key=">Tin Goinda</a> </li>
-                    <li><a href="request.php">Create Book Request</a></li>
+<?php
+    
+    $sql = "SELECT menu FROM menus";
+    $result = mysqli_query($con,$sql);
 
+    $menu_count = mysqli_num_rows($result);
+
+    if ($menu_count >0 ) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $menus[] = $row;
+        }
+
+    foreach ($menus as $key) {
+    ?>
+
+                    <li><a href="search.php?key=<?php echo $key['menu']; ?>"><?php echo $key['menu']; ?></a></li>
+
+<?php    
+    }
+        }else {
+        echo "Menu Not Added Yet !!";
+    } 
+    
+
+?>
+                    <li><a href="request.php">Create Book Request</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
         </div>
-
-
-
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left all-book" style="padding: 20px 20px 30px 20px">
-          <div class="center requestdiv" >
-            <form method="post" action="">
-              Book Name : <input name="book_name" type="text" ><br>
-              Writer Of the Book : <input name="writer" type="text" ><br>
-              <input type="submit" value="Submit" name="submit"><br>
-            </form>
-          </div>
-        </div>
-
-        
-        <div class="center col-lg-12 col-md-12 col-sm-12 col-xs-12 left all-book" style="padding: 20px 20px 30px 20px">
-            <p>All &copy; 2018 Recived by Mortuza Hossain</p>
-        </div>
-</body>
-
-</html>
-

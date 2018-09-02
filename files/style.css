@@ -2,7 +2,34 @@
     font-family: 'Oswald';
     src: local('Oswald'), url(Oswald.woff) format('woff');
 }
-
+.requestdiv {
+    padding: 10px;
+    border: 2px solid black;
+    padding: 34px;
+    border-radius: 5px;
+    color: rebeccapurple;
+    margin: 10%;
+    line-height: 36px;
+    background: lightcyan;
+}
+input[type="text"] {
+    width: 50%;
+    position: relative;
+    padding: 3px;
+    margin-left: 30px;
+}
+input[type="submit"] {
+    background: black;
+    color: white;
+    padding: 5px 30px;
+    border: 2px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+}
+input[type="submit"] :hover{
+  background: while;
+  color: red;
+}
 @font-face {
     font-family: 'Yanone Kaffeesatz';
     src: local('Yanone Kaffeesatz Regular'), url(Yanone.woff) format('woff');
